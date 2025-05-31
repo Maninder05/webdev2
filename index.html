@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Unit Converter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" /> 
+</head>
+<body class="bg-gradient-to-br from-blue-600 to-green-500 min-h-screen flex flex-col">
+  <nav class="bg-white shadow-md p-6">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-purple-600">Unit Converter</h1>
+      <div class="flex space-x-6">
+        <button onclick="switchTab('weight')" id="tab-weight" class="tab-btn font-medium text-blue-700 hover:text-purple-700 focus:outline-none border-b-2 border-purple-700">Weight</button>
+        <button onclick="switchTab('distance')" id="tab-distance" class="tab-btn font-medium text-blue-700 hover:text-purple-700 focus:outline-none border-b-2 border-purple-700">Distance</button>
+        <button onclick="switchTab('temperature')" id="tab-temperature" class="tab-btn font-medium text-blue-700 hover:text-purple-700 focus:outline-none border-b-2 border-purple-700">Temperature</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-xl mx-auto mt-10 bg-white rounded-xl shadow-lg p-6 space-y-6 flex-grow">
+
+    <section id="weight" class="tab">
+      <h2 class="text-xl font-semibold text-purple-700">Weight Converter (kg = lb)</h2>
+      <!-- On submission of form, handleConversion method will be called triggering the event for specific tab -->
+      <form onsubmit="handleConversion(event, 'weight')">
+        <label class="block mt-4 font-medium">Enter value(s) (comma-separated for multiple):</label>
+        <input type="text" id="weightInput" class="w-full p-2 border rounded mt-2" placeholder="" autocomplete="off" />
+        <!-- convert method will get called onclick of button everytime -->
+        <div class="flex space-x-4 mt-4">
+          <button type="button" onclick="convert('kg', 'lb', 'weightInput', 'weightResult')" class="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-800">KG ➝ LB</button>
+          <button type="button" onclick="convert('lb', 'kg', 'weightInput', 'weightResult')" class="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-800">LB ➝ KG</button>
+        </div>
+
+        <!-- id must match the parameter passed in convert method -->
+        <div id="weightResult" class="mt-4 font-medium text-purple-700"></div> 
+      </form>
+    </section>
+
+    <section id="distance" class="tab hidden">
+      <h2 class="text-xl font-semibold text-purple-700">Distance Converter (km = miles)</h2>
+      <form onsubmit="handleConversion(event, 'distance')">
+        <label class="block mt-4 font-medium">Enter value(s) (comma-separated for multiple):</label>
+        <input type="text" id="distanceInput" class="w-full p-2 border rounded mt-2" placeholder="" autocomplete="off" />
+
+        <div class="flex space-x-4 mt-4">
+          <button type="button" onclick="convert('km', 'mi', 'distanceInput', 'distanceResult')" class="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-800">KM ➝ MI</button>
+          <button type="button" onclick="convert('mi', 'km', 'distanceInput', 'distanceResult')" class="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-800">MI ➝ KM</button>
+        </div>
+
+        <div id="distanceResult" class="mt-4 font-medium text-purple-700"></div>
+      </form>
+    </section>
+
+    <section id="temperature" class="tab hidden">
+      <h2 class="text-xl font-semibold text-purple-700">Temperature Converter (°C = °F)</h2>
+      <form onsubmit="handleConversion(event, 'temperature')">
+        <label class="block mt-4 font-medium">Enter value(s) (comma-separated for multiple):</label>
+        <input type="text" id="temperatureInput" class="w-full p-2 border rounded mt-2" placeholder="" autocomplete="off" />
+
+        <div class="flex space-x-4 mt-4">
+          <button type="button" onclick="convert('c', 'f', 'temperatureInput', 'temperatureResult')" class="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-800">°C ➝ °F</button>
+          <button type="button" onclick="convert('f', 'c', 'temperatureInput', 'temperatureResult')" class="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-800">°F ➝ °C</button>
+        </div>
+
+        <div id="temperatureResult" class="mt-4 font-medium text-purple-700"></div>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="bg-white shadow-inner text-center p-4 text-sm text-voilet-600">
+    Follow for more tips and trick thankyou!
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
